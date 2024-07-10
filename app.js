@@ -92,9 +92,9 @@ res.locals.currUser=req.user;
 next();
 })
 
-app.get('/', (req, res) => {
-  res.send('workingnode');
-});
+// app.get('/', (req, res) => {
+//   res.send('workingnode');
+// });
 
 
 app.use("/listings",listingsRouter);
