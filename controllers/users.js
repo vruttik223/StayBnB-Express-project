@@ -32,8 +32,10 @@ module.exports.signup=async (req, res) => {
 }
 
 module.exports.login=async(req, res) => {
-    req.flash("success", "Welcome back to Wanderlust!");
+    req.flash("success", "Welcome back to StayBnb !");
     let redirectUrl=res.locals.redirectUrl || "/listings"
+
+    
         // condition for home page nd task pages
        res.redirect(redirectUrl);
       // so here we call local user now go to that page which has already

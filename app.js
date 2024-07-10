@@ -95,6 +95,7 @@ next();
 // Root route
 app.get('/', (req, res) => {
   res.redirect('/listings');
+
 });
 
 app.use("/listings",listingsRouter);

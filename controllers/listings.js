@@ -9,22 +9,46 @@ module.exports.renderNewForm=( req, res) => {
     res.render("listings/new.ejs");
   }
 
-  module.exports.showListing=async (req, res) => {
-    let { id } = req.params;
-    const listing = await Listing.findById(id)
-    .populate({
-       path :"reviews",
-       populate :{
-       path: "author",
-     },
-})
-    .populate("owner");
-    if(!listing){
-     req.flash("error","listing you requested for doesnot exist");
-     res.redirect("/listings")
+  module.exports.showListing = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const listing = await Listing.findById(id)
+        .populate({
+          path: "reviews",
+          populate: {
+            path: "author",
+          },
+        })
+        .populate("owner"); // Ensure 'owner' field is populated correctly
+  
+      if (!listing) {
+        req.flash("error", "Listing not found");
+        return res.redirect("/listings");
+      }
+  
+      res.render("listings/show.ejs", { listing });
+    } catch (err) {
+      console.error("Error fetching listing:", err);
+      req.flash("error", "Error fetching listing");
+      res.redirect("/listings");
     }
-    res.render("listings/show.ejs", { listing });
-  }
+  };
+//   module.exports.showListing=async (req, res) => {
+//     let { id } = req.params;
+//     const listing = await Listing.findById(id)
+//     .populate({
+//        path :"reviews",
+//        populate :{
+//        path: "author",
+//      },
+// })
+//     .populate("owner");
+//     if(!listing){
+//      req.flash("error","listing you requested for doesnot exist");
+//      res.redirect("/listings")
+//     }
+//     res.render("listings/show.ejs", { listing });
+//   }
 
   module.exports.createListing=async (req, res, next) => {
    let url= req.file.path;
