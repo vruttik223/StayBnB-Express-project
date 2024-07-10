@@ -23,9 +23,10 @@ const validateListing = (req, res, next) => {
       next();
     }
   }; 
-  // making routes more compact with router.route 
-router.route('/')
-.get(wrapAsync(listingController.index))    // index route
+  // making routes more compact with router.route which help to maintain mv c sturucture 
+  router 
+  .route("/")
+  .get( wrapAsync(listingController.index))    // index route
 .post(isLoggedIn,upload.single('listing[image]'), validateListing, wrapAsync(listingController.createListing)) ;  // Create route
 
  // New route
