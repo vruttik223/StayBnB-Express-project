@@ -23,7 +23,7 @@ const validateListing = (req, res, next) => {
       next();
     }
   }; 
-  // making routes more compact with router.route which help to maintain mv c sturucture 
+  // making routes more compact with router.route which help to maintain mvc sturucture 
   router 
   .route("/")
   .get( wrapAsync(listingController.index))    // index route
