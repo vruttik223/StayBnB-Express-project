@@ -7,6 +7,9 @@ body{
     .container{
       flex:1;
     }
+    .navbar-collapse {
+      background-color: white; /* Ensure the dropdown has a white background */
+  }
     
     /* NAVBAR */
     .navbar{
