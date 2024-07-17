@@ -57,6 +57,11 @@ body{
         justify-content: center;
         align-items: space-evenly;
     }
+@media (min-width: 768px) {
+    .hide-nav-link {
+        display: none !important;
+    }
+}
     /*  cards */
     .listing-card{
         border:none !important;
